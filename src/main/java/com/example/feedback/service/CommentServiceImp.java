@@ -21,6 +21,7 @@ public class CommentServiceImp implements CommentService{
             Comment comment = new Comment();
             comment.setCommentBody(commentDto.getCommentBody());
             comment.setCategory(commentDto.getCategory());
+            comment.setAnonymous(commentDto.isAnonymous());
             comment.setUser(commentDto.getUser());
             commentRepository.save(comment);
             return commentDto;

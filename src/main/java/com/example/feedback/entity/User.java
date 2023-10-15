@@ -16,12 +16,12 @@ import java.util.List;
 @Document(collection = "user")
 public class User {
 
-//    @Id
-    private ObjectId _id;
+    @Id
+    private String email;
     private String firstName;
     private String lastName;
-    @Indexed(unique = true)
-    private String email;
     private int points;
+
+
     //private List<Comment> userComments;
 }

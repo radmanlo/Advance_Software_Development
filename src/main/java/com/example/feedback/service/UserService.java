@@ -14,21 +14,39 @@ public interface UserService {
     UserDto createUser (UserDto userDto);
 
     /**
+     * Update a user
+     * @param userDto
+     * @return UserDto if it updates successfully
+     * otherwise
+     * @return null
+     */
+    UserDto updateUser (UserDto userDto);
+
+    /**
      * Find User by email
      * @param email
      * @return UserDto if find the user by provided email
      * otherwise
      * @return null
      */
-    UserDto findUserByEmail (String email);
+    UserDto getUserByEmail (String email);
+
+    /**
+     * Delete a user
+     * @param email
+     * @return UserDto when it is deleted successfully
+     * otherwise
+     * @return null
+     */
+    UserDto deleteUser (String email);
 
     /**
      * Update a User
-     * @param userDto
+     * @param email
      * @return UserDto an Updated User
      * otherwise
      * @return null
      */
-    UserDto updateUser (UserDto userDto);
+    UserDto updateUserPoint (String email);
 
 }

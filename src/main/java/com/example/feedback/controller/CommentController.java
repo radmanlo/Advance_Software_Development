@@ -6,6 +6,7 @@ import com.example.feedback.entity.User;
 import com.example.feedback.repository.CommentRepository;
 import com.example.feedback.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -27,17 +28,24 @@ public class CommentController {
     public ResponseEntity<CommentDto> createComment (@RequestBody CommentDto commentDto){
 
         try {
-            String url = "http://localhost:5050/user/findByEmail?email=" + commentDto.getUser().getEmail();
+            System.out.println(commentDto.getUser().getEmail());
+            String url = "http://localhost:5050/user/update/point?email=" + commentDto.getUser().getEmail();
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<UserDto> user = restTemplate.getForEntity(url, UserDto.class);
+            ResponseEntity<UserDto> user = restTemplate.exchange(
+                    url,
+                    HttpMethod.PUT,
+                    null,
+                    UserDto.class
+            );
             if (user.hasBody()){
-                System.out.println(user.getBody().get_id().toString());
+                commentDto.getUser().setFirstName(user.getBody().getFirstName());
+                commentDto.getUser().setLastName(user.getBody().getLastName());
                 CommentDto newComment = commentService.createComment(commentDto);
                 return ResponseEntity.status(HttpStatus.CREATED).body(newComment);
             }
             else return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("Exception createComment in commentController ==> " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

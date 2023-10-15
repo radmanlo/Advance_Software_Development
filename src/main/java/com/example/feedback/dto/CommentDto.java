@@ -12,8 +12,10 @@ import org.bson.types.ObjectId;
 @AllArgsConstructor
 public class CommentDto {
 
-    ObjectId commentObjectId;
+    //ObjectId commentObjectId;
     private String category;
     private String commentBody;
+    private boolean anonymous;
     private User user;
+
 }

@@ -7,9 +7,9 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Optional;
 
-public interface UserRepository extends MongoRepository<User, ObjectId> {
+public interface UserRepository extends MongoRepository<User, String> {
 
-    Optional<User> findUserByEmail (String email);
+    Optional<User> deleteByEmail (String email);
 
     //Optional<User>
     //@Query("{email: ?0}")

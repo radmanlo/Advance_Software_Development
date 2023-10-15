@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,11 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 public class PolicyDto {
 
-    ObjectId policyId;
+    private String policyId;
     private String name;
+    private String description;
     private String category;
     private String duration;
-    private String description;
     private int likes;
-    private List<Comment> PolicyComment;
+    private List<Comment> PolicyComment = new ArrayList<Comment>();
 }

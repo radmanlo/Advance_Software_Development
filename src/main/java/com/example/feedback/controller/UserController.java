@@ -22,7 +22,21 @@ public class UserController {
             UserDto newUSer = userService.createUser(userDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(newUSer);
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("Exception createUser in UserController ==> " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<UserDto> updateUser (@RequestBody UserDto userDto){
+        try{
+            UserDto updatedUser = userService.updateUser(userDto);
+            if (updatedUser != null){
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedUser);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e){
+            System.out.println("Exception updatedUser in UserController" + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
@@ -30,7 +44,7 @@ public class UserController {
     @GetMapping("/findByEmail")
     public ResponseEntity<UserDto> findByEmail (@RequestParam String email){
         try {
-            UserDto userDto = userService.findUserByEmail(email);
+            UserDto userDto = userService.getUserByEmail(email);
             if (userDto != null)
                 return ResponseEntity.status(HttpStatus.FOUND).body(userDto);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -40,14 +54,33 @@ public class UserController {
         }
     }
 
-    @PutMapping("/updateUser")
-    public ResponseEntity<UserDto> updateUser (@RequestBody UserDto userDto){
+    @DeleteMapping("/delete")
+    public ResponseEntity<UserDto> deleteUser (String email){
         try{
-            UserDto updatedUser = userService.updateUser(userDto);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedUser);
+            UserDto deletedUser = userService.deleteUser(email);
+            if (deletedUser != null){
+                return ResponseEntity.status(HttpStatus.OK).body(deletedUser);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e){
+            System.out.println("Exception updatedUser in UserController" + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PutMapping("/update/point")
+    public ResponseEntity<UserDto> updateUserPoint (@RequestParam String email){
+        try{
+            UserDto updatedUser = userService.updateUserPoint(email);
+            if (updatedUser != null){
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedUser);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e){
             System.out.println("Exception updateUser in UserController ==> " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
 }
