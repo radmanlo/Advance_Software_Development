@@ -1,8 +1,11 @@
 package com.example.feedback.service;
 
+import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
+import com.example.feedback.dto.UserDto;
 import com.example.feedback.entity.Comment;
 import com.example.feedback.entity.Policy;
+import com.example.feedback.entity.User;
 import org.bson.types.ObjectId;
 
 import java.util.List;
@@ -64,5 +67,5 @@ public interface PolicyService {
      */
     PolicyDto addComment (String policyId, Comment comment);
 
-
+//    PolicyDto addCommentByChain (String policyId, CommentDto commentDto);
 }

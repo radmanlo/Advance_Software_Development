@@ -38,8 +38,8 @@ public class CommentController {
                     UserDto.class
             );
             if (user.hasBody()){
-                commentDto.getUser().setFirstName(user.getBody().getFirstName());
-                commentDto.getUser().setLastName(user.getBody().getLastName());
+                //commentDto.getUser().setFirstName(user.getBody().getFirstName());
+                //commentDto.getUser().setLastName(user.getBody().getLastName());
                 CommentDto newComment = commentService.createComment(commentDto);
                 return ResponseEntity.status(HttpStatus.CREATED).body(newComment);
             }

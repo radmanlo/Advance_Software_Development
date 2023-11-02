@@ -1,9 +1,15 @@
 package com.example.feedback.controller;
 
+import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
 import com.example.feedback.entity.Comment;
 import com.example.feedback.entity.Policy;
+import com.example.feedback.entity.User;
+import com.example.feedback.service.FacadeService;
 import com.example.feedback.service.PolicyService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +22,12 @@ import java.util.List;
 public class PolicyController {
 
     @Autowired
-    private PolicyService policyService;
+    private FacadeService service;
 
     @PostMapping("/create")
     public ResponseEntity<PolicyDto> createPolicy (@RequestBody PolicyDto policyDto){
         try{
-            PolicyDto newPolicy = policyService.createPolicy(policyDto);
+            PolicyDto newPolicy = service.createPolicy(policyDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(newPolicy);
         } catch (Exception e){
             System.out.println("Exception getPolicyById in PolicyController" + e.getMessage());
@@ -32,7 +38,7 @@ public class PolicyController {
     @PutMapping("/update")
     public  ResponseEntity<PolicyDto> updatePolicy (@RequestBody PolicyDto policyDto){
         try{
-            PolicyDto updatePolicy = policyService.updatePolicy(policyDto);
+            PolicyDto updatePolicy = service.updatePolicy(policyDto);
             if (updatePolicy != null){
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatePolicy);
             }
@@ -46,7 +52,7 @@ public class PolicyController {
     @GetMapping("/getById")
     public ResponseEntity<PolicyDto> getPolicyById(@RequestParam String policyId){
         try {
-            PolicyDto policyDto = policyService.getPolicyById(policyId);
+            PolicyDto policyDto = service.getPolicyById(policyId);
             if (policyDto != null)
                 return ResponseEntity.status(HttpStatus.FOUND).body(policyDto);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -59,7 +65,7 @@ public class PolicyController {
     @GetMapping("/getAll")
     public  ResponseEntity<List<PolicyDto>> getAllPolicies(){
         try {
-            List<PolicyDto> listPolicy = policyService.getAllPolicies();
+            List<PolicyDto> listPolicy = service.getAllPolicies();
             return ResponseEntity.status(HttpStatus.FOUND).body(listPolicy);
         } catch (Exception e){
             System.out.println("Exception getAllPolicies in PolicyController" + e.getMessage());
@@ -70,7 +76,7 @@ public class PolicyController {
     @DeleteMapping("/delete")
     public ResponseEntity<PolicyDto> deletePolicyById(@RequestParam String policyId){
         try {
-            PolicyDto policyDto = policyService.deletePolicy(policyId);
+            PolicyDto policyDto = service.deletePolicy(policyId);
             if (policyDto != null)
                 return ResponseEntity.status(HttpStatus.OK).body(policyDto);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -84,14 +90,30 @@ public class PolicyController {
     public ResponseEntity<PolicyDto> addComment (@RequestParam String policyId,
                                                  @RequestBody Comment comment){
         try{
-            PolicyDto updatePolicy = policyService.addComment(policyId, comment);
+            PolicyDto updatePolicy = service.addComment(policyId, comment);
             if (updatePolicy != null){
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatePolicy);
             }
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e){
+            System.out.println("Exception addComment in PolicyController" + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
     }
+
+//    @PostMapping("/addByChain")
+//    public ResponseEntity<PolicyDto> addCommentByChain(@RequestParam String policyId,
+//                                                       @RequestBody CommentDto commentDto){
+//        try{
+//            PolicyDto policyDto = policyService.addCommentByChain(policyId, commentDto);
+//            if (policyDto != null){
+//                return ResponseEntity.status(HttpStatus.ACCEPTED).body(policyDto);
+//            }
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//        }catch (Exception e){
+//            System.out.println("Exception in addCommentByChain" + e.getMessage());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
+//    }
 }

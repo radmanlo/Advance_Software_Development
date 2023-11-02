@@ -2,6 +2,7 @@ package com.example.feedback.controller;
 
 import com.example.feedback.dto.UserDto;
 import com.example.feedback.entity.User;
+import com.example.feedback.service.FacadeService;
 import com.example.feedback.service.UserService;
 import com.example.feedback.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private FacadeService service;
 
     @PostMapping("/create")
     public ResponseEntity<UserDto> createUser (@RequestBody UserDto userDto){
         try{
-            UserDto newUSer = userService.createUser(userDto);
+            UserDto newUSer = service.createUser(userDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(newUSer);
         } catch (Exception e){
             System.out.println("Exception createUser in UserController ==> " + e.getMessage());
@@ -30,7 +31,7 @@ public class UserController {
     @PutMapping("/update")
     public ResponseEntity<UserDto> updateUser (@RequestBody UserDto userDto){
         try{
-            UserDto updatedUser = userService.updateUser(userDto);
+            UserDto updatedUser = service.updateUser(userDto);
             if (updatedUser != null){
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedUser);
             }
@@ -44,7 +45,7 @@ public class UserController {
     @GetMapping("/findByEmail")
     public ResponseEntity<UserDto> findByEmail (@RequestParam String email){
         try {
-            UserDto userDto = userService.getUserByEmail(email);
+            UserDto userDto = service.getUserByEmail(email);
             if (userDto != null)
                 return ResponseEntity.status(HttpStatus.FOUND).body(userDto);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -57,7 +58,7 @@ public class UserController {
     @DeleteMapping("/delete")
     public ResponseEntity<UserDto> deleteUser (String email){
         try{
-            UserDto deletedUser = userService.deleteUser(email);
+            UserDto deletedUser = service.deleteUser(email);
             if (deletedUser != null){
                 return ResponseEntity.status(HttpStatus.OK).body(deletedUser);
             }
@@ -71,7 +72,7 @@ public class UserController {
     @PutMapping("/update/point")
     public ResponseEntity<UserDto> updateUserPoint (@RequestParam String email){
         try{
-            UserDto updatedUser = userService.updateUserPoint(email);
+            UserDto updatedUser = service.updateUserPoint(email);
             if (updatedUser != null){
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatedUser);
             }

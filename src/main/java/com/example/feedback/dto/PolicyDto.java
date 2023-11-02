@@ -2,17 +2,18 @@ package com.example.feedback.dto;
 
 
 import com.example.feedback.entity.Comment;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@ToString
 public class PolicyDto {
 
     private String policyId;
@@ -21,5 +22,5 @@ public class PolicyDto {
     private String category;
     private String duration;
     private int likes;
-    private List<Comment> PolicyComment = new ArrayList<Comment>();
+    private List<Comment> policyComments = new ArrayList<Comment>();
 }

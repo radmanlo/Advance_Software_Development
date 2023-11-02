@@ -25,7 +25,7 @@ public interface UserService {
     /**
      * Find User by email
      * @param email
-     * @return UserDto if find the user by provided email
+     * @return UserDto if function finds the user by provided email
      * otherwise
      * @return null
      */

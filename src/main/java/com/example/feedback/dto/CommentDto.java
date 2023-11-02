@@ -1,21 +1,27 @@
 package com.example.feedback.dto;
 
 
+import com.example.feedback.entity.Comment;
 import com.example.feedback.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.bson.types.ObjectId;
 
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class CommentDto {
 
-    //ObjectId commentObjectId;
+    private String commentId;
     private String category;
     private String commentBody;
     private boolean anonymous;
     private User user;
+//    private List<Comment> comments = new ArrayList<Comment>();
 
 }

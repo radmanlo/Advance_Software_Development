@@ -2,6 +2,7 @@ package com.example.feedback.service;
 
 import com.example.feedback.dto.UserDto;
 import com.example.feedback.entity.User;
+import com.example.feedback.entity.builder.UserBuilder;
 import com.example.feedback.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,19 @@ public class UserServiceImp implements UserService {
     @Override
     public UserDto createUser(UserDto userDto) {
         try{
-            User user = new User();
-            user.setEmail(userDto.getEmail());
-            user.setFirstName(userDto.getFirstName());
-            user.setLastName(userDto.getLastName());
-            user.setPoints(userDto.getPoints());
+            User user = new UserBuilder()
+                    .setEmail(userDto.getEmail())
+                    .setFirstName(userDto.getFirstName())
+                    .setLastName(userDto.getLastName())
+                    .setPoints(userDto.getPoints())
+                    .build();
             User newUser = userRepository.save(user);
-            UserDto newUserDto = new UserDto(newUser.getEmail(), newUser.getFirstName(),
-                    newUser.getLastName(), newUser.getPoints());
+            UserDto newUserDto = UserDto.builder()
+                    .email(newUser.getEmail())
+                    .firstName(newUser.getFirstName())
+                    .lastName(newUser.getLastName())
+                    .points(newUser.getPoints())
+                    .build();
             System.out.println("-----------------------------------");
             System.out.println("User is created");
             System.out.println("-----------------------------------");
@@ -40,25 +46,27 @@ public class UserServiceImp implements UserService {
         try{
             Optional<User> foundUser = userRepository.findById(userDto.getEmail());
             if (foundUser.isPresent()){
-                User updateUser = new User();
+                UserBuilder builder = new UserBuilder();
                 if (userDto.getFirstName() != null)
-                    updateUser.setFirstName(userDto.getFirstName());
+                    builder.setFirstName(userDto.getFirstName());
                 else
-                    updateUser.setFirstName(foundUser.get().getFirstName());
+                    builder.setFirstName(foundUser.get().getFirstName());
                 if (userDto.getLastName() != null)
-                    updateUser.setLastName(userDto.getLastName());
+                    builder.setLastName(userDto.getLastName());
                 else
-                    updateUser.setLastName(foundUser.get().getLastName());
+                    builder.setLastName(foundUser.get().getLastName());
                 if (userDto.getPoints() != 0)
-                    updateUser.setPoints(userDto.getPoints());
+                    builder.setPoints(userDto.getPoints());
                 else
-                    updateUser.setPoints(foundUser.get().getPoints());
+                    builder.setPoints(foundUser.get().getPoints());
+                User updateUser = builder.build();
                 User user = userRepository.save(updateUser);
-                UserDto updatedUserDto = new UserDto(
-                        userDto.getEmail(),
-                        updateUser.getFirstName(),
-                        userDto.getLastName(),
-                        userDto.getPoints());
+                UserDto updatedUserDto = UserDto.builder()
+                        .email(user.getEmail())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .points(user.getPoints())
+                        .build();
                 return updatedUserDto;
             }
             return null;
@@ -72,14 +80,13 @@ public class UserServiceImp implements UserService {
     public UserDto getUserByEmail(String email) {
         try{
             Optional<User> foundUser = userRepository.findById(email);
-            if (foundUser.isPresent()){
-                UserDto foundUserDto = new UserDto();
-                foundUserDto.setEmail(foundUser.get().getEmail());
-                foundUserDto.setFirstName(foundUser.get().getFirstName());
-                foundUserDto.setLastName(foundUser.get().getLastName());
-                foundUserDto.setPoints(foundUser.get().getPoints());
-                return foundUserDto;
-            }
+            if (foundUser.isPresent())
+                return UserDto.builder()
+                        .email(foundUser.get().getEmail())
+                        .firstName(foundUser.get().getFirstName())
+                        .lastName(foundUser.get().getLastName())
+                        .points(foundUser.get().getPoints())
+                        .build();
             System.out.println("updateUser in UserServiceImp ==> " + "user with this email not found");
             return null;
         } catch (Exception e){
@@ -93,11 +100,12 @@ public class UserServiceImp implements UserService {
         try{
             Optional<User> deletedUser = userRepository.deleteByEmail(email);
             if (deletedUser.isPresent()){
-                UserDto userDto = new UserDto(
-                        deletedUser.get().getEmail(),
-                        deletedUser.get().getFirstName(),
-                        deletedUser.get().getLastName(),
-                        deletedUser.get().getPoints());
+                UserDto userDto = UserDto.builder()
+                        .email(deletedUser.get().getEmail())
+                        .firstName(deletedUser.get().getFirstName())
+                        .lastName(deletedUser.get().getLastName())
+                        .points(deletedUser.get().getPoints())
+                        .build();
                 return userDto;
             }
             return null;
@@ -112,17 +120,22 @@ public class UserServiceImp implements UserService {
         try{
             Optional<User> foundUser = userRepository.findById(email);
             if (foundUser.isPresent()){
-                foundUser.get().setPoints(foundUser.get().getPoints() + 1);
-                UserDto updatedUser = new UserDto();
-                updatedUser.setEmail(foundUser.get().getEmail());
-                updatedUser.setFirstName(foundUser.get().getFirstName());
-                updatedUser.setLastName(foundUser.get().getLastName());
-                updatedUser.setPoints(foundUser.get().getPoints());
-                userRepository.save(foundUser.get());
+                UserBuilder updatedBuilderUser = new UserBuilder()
+                        .setEmail(foundUser.get().getEmail())
+                        .setFirstName(foundUser.get().getFirstName())
+                        .setLastName(foundUser.get().getLastName())
+                        .setPoints(foundUser.get().getPoints() + 1);
+                User updatedUser = userRepository.save(updatedBuilderUser.build());
+                UserDto updatedUserDto = UserDto.builder()
+                        .email(updatedUser.getEmail())
+                        .firstName(updatedUser.getFirstName())
+                        .lastName(updatedUser.getLastName())
+                        .points(updatedUser.getPoints())
+                        .build();
                 System.out.println("-----------------------------------");
                 System.out.println("User point is updated");
                 System.out.println("-----------------------------------");
-                return updatedUser;
+                return updatedUserDto;
             }
             System.out.println("updateUser in UserServiceImp ==> " + "user with this email not found");
             return null;
