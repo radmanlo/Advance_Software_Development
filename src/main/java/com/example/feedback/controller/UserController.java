@@ -1,6 +1,7 @@
 package com.example.feedback.controller;
 
 import com.example.feedback.dto.UserDto;
+import com.example.feedback.entity.Comment;
 import com.example.feedback.entity.User;
 import com.example.feedback.service.FacadeService;
 import com.example.feedback.service.UserService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -68,6 +71,19 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+//    @GetMapping("/getComments")
+//    public ResponseEntity<List<Comment>> getCommentsByUserEmail (@RequestParam String userEmail){
+//        try{
+//            List<Comment> comments = service.getCommentsByUserEmail(userEmail);
+//            if (comments != null)
+//                return ResponseEntity.status(HttpStatus.FOUND).body(comments);
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//        } catch (Exception e){
+//            System.out.println("Exception getCommentsByUserEmail in UserController" + e.getMessage());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
+//    }
 
     @PutMapping("/update/point")
     public ResponseEntity<UserDto> updateUserPoint (@RequestParam String email){

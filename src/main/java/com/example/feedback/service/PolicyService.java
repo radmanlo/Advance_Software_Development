@@ -13,7 +13,7 @@ import java.util.List;
 public interface PolicyService {
 
     /**
-     * Create a new policy
+     * Create a new user
      * @param policyDto
      * @return policyDto if it saves in MongoDB
      * otherwise
@@ -49,7 +49,7 @@ public interface PolicyService {
     List<PolicyDto> getAllPolicies ();
 
     /**
-     * Delete a policy by its id
+     * Delete a user by its id
      * @param policyId
      * @return PolicyDto if it deleted
      * otherwise
@@ -59,13 +59,15 @@ public interface PolicyService {
 
 
     /**
-     * Add a comment into the
+     * Add a putComment into the
      * @param policyId
-     * @return PolicyDto with added comment
+     * @return PolicyDto with added putComment
      * otherwise
      * @return null
      */
     PolicyDto addComment (String policyId, Comment comment);
+
+//    List<PolicyDto> findCommentByUserEmail (String userEmail);
 
 //    PolicyDto addCommentByChain (String policyId, CommentDto commentDto);
 }

@@ -1,28 +1,35 @@
 package com.example.feedback.service;
 
 import com.example.feedback.dto.CommentDto;
-import com.example.feedback.dto.PolicyDto;
-import org.bson.types.ObjectId;
 
 import java.util.List;
 
 public interface CommentService {
 
     /**
-     * Create a new comment
+     * Create a new putComment
      * @param commentDto
      * @return
      */
     CommentDto createComment (CommentDto commentDto);
 
     /**
-     * Update a comment by id
+     * Get Comment by its Id
      * @param commentId
+     * @return CommentDto if it was successful
+     * otherwise
+     * @return null
+     */
+    CommentDto getById (String commentId);
+
+    /**
+     * Update a putComment by id
+     * @param commentDto
      * @return updated CommentDto if it was successful
      * otherwise
      * @return null
      */
-    CommentDto updateComment (String commentId);
+    CommentDto updateComment (CommentDto commentDto);
 
     /**
      * Get all Comments of a user by its email
@@ -33,6 +40,8 @@ public interface CommentService {
      */
     List<CommentDto> getUserComments (String userEmail);
 
+    List<CommentDto> getPolicyComments (String policyId);
+
     /**
      * Delete a document by its id
      * @param commentId
@@ -42,14 +51,5 @@ public interface CommentService {
      */
     CommentDto deleteComment (String commentId);
 
-    /**
-     * Add a comment to another comment
-     * @param commentId
-     * @param commentDto
-     * @return updated CommentDto if it was successful
-     * otherwise
-     * @return null
-     */
-    CommentDto addCommentToComment (String commentId, CommentDto commentDto);
 
 }

@@ -22,5 +22,5 @@ public class PolicyDto {
     private String category;
     private String duration;
     private int likes;
-    private List<Comment> policyComments = new ArrayList<Comment>();
+//    private List<Comment> policyComments = new ArrayList<Comment>();
 }

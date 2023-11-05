@@ -25,12 +25,12 @@ public class AddPointHandler implements AddCommentHandler{
     }
 
     @Override
-    public Comment processComment(Comment comment) {
-        UserDto userDto = userService.updateUserPoint(comment.getUser().getEmail());
+    public CommentDto processComment(CommentDto commentDto) {
+        UserDto userDto = userService.updateUserPoint(commentDto.getUserDto().getEmail());
         if (userDto != null){
             if (nextHandler != null)
-                return nextHandler.processComment(comment);
-            return comment;
+                return nextHandler.processComment(commentDto);
+            return commentDto;
         }
         return null;
     }

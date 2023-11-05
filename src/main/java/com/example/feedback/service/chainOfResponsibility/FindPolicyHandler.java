@@ -2,31 +2,24 @@ package com.example.feedback.service.chainOfResponsibility;
 
 import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
-import com.example.feedback.dto.UserDto;
 import com.example.feedback.entity.Comment;
 import com.example.feedback.entity.Policy;
-import com.example.feedback.entity.User;
 import com.example.feedback.entity.builder.CommentBuilder;
-import com.example.feedback.entity.builder.UserBuilder;
+import com.example.feedback.entity.builder.PolicyBuilder;
+import com.example.feedback.service.PolicyService;
 import com.example.feedback.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-//@RequiredArgsConstructor
 @Component
-public class FindUserHandler implements AddCommentHandler{
+public class FindPolicyHandler implements AddCommentHandler {
 
     private AddCommentHandler nextHandler;
 
-    private final UserService userService;
+    private final PolicyService policyService;
 
-    @Autowired
-    public FindUserHandler(UserService userService) {
-        this.userService = userService;
+    public FindPolicyHandler (PolicyService policyService){
+        this.policyService = policyService;
     }
-
     @Override
     public void setNextHandler(AddCommentHandler nextHandler) {
         this.nextHandler = nextHandler;
@@ -34,23 +27,23 @@ public class FindUserHandler implements AddCommentHandler{
 
     @Override
     public CommentDto processComment(CommentDto commentDto) {
-        UserDto foundUser = userService.getUserByEmail(commentDto.getUserDto().getEmail());
-        if(foundUser != null ){
+        PolicyDto policyDto = policyService.getPolicyById(commentDto.getPolicyDto().getPolicyId());
+        if (policyDto != null){
             CommentDto updatedComment = CommentDto.builder()
                     .commentId(commentDto.getCommentId())
-                    .policyDto(commentDto.getPolicyDto())
-                    .userDto(foundUser)
                     .commentBody(commentDto.getCommentBody())
-                    .category(commentDto.getCategory())
+                    .policyDto(policyDto)
+                    .userDto(commentDto.getUserDto())
                     .anonymous(commentDto.isAnonymous())
+                    .category(commentDto.getCategory())
                     .build();
-            if (nextHandler != null) {
+            if(nextHandler != null){
                 return nextHandler.processComment(updatedComment);
             }
             else
                 return updatedComment;
         }
-        System.out.println("User not found");
+        System.out.println("Policy is not found");
         return null;
     }
 }

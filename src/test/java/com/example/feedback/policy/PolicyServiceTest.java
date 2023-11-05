@@ -24,7 +24,7 @@ public class PolicyServiceTest {
     @Order(1)
     public void createPolicyTest(){
 
-        // Create a Dummy policy
+        // Create a Dummy user
 //        PolicyDto policyTest = new PolicyDto();
 //        policyTest.setName("Test Name");
 //        policyTest.setDescription("Test Description");
@@ -32,7 +32,7 @@ public class PolicyServiceTest {
 //        policyTest.setDuration("Test Duration");
 //        policyTest.setLikes(0);
 //
-//        // Retrieve policy from createPolicy function
+//        // Retrieve user from createPolicy function
 //        PolicyDto retrievedPolicy = policyService.createPolicy(policyTest);
 //
 //        // test different attribute of Policy
@@ -53,7 +53,7 @@ public class PolicyServiceTest {
     @Order(2)
     public void updatePolicyTest(){
 
-        // Update the Dummy policy
+        // Update the Dummy user
 //        PolicyDto policyTest = new PolicyDto();
 //        policyTest.setPolicyId(policyId);
 //        policyTest.setName("Updated Test Name");
@@ -61,7 +61,7 @@ public class PolicyServiceTest {
 //        policyTest.setCategory("Updated Category");
 //        policyTest.setDuration("Updated Test Duration");
 //
-//        // Retrieve policy from updatePolicy function
+//        // Retrieve user from updatePolicy function
 //        PolicyDto retrievedPolicy = policyService.updatePolicy(policyTest);
 //
 //        // Test Update Policy
@@ -94,8 +94,8 @@ public class PolicyServiceTest {
         List<PolicyDto> listPolicy = policyService.getAllPolicies();
 
         // Test
-        assertNotNull(listPolicy, "List policy is null");
-        assertNotEquals(0, listPolicy.size(), "There is not any policy in database");
+        assertNotNull(listPolicy, "List user is null");
+        assertNotEquals(0, listPolicy.size(), "There is not any user in database");
     }
 
     @Test
@@ -114,6 +114,6 @@ public class PolicyServiceTest {
 //        PolicyDto deletedPolicy = policyService.deletePolicy(policyId);
 //
 //        // Test
-//        assertNotNull(deletedPolicy, "Deleted policy is null");
+//        assertNotNull(deletedPolicy, "Deleted user is null");
     }
 }

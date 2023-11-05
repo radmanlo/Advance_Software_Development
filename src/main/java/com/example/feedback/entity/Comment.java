@@ -9,23 +9,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//@Document(collection = "comment")
+//@Document(collection = "putComment")
 //@Setter
 @ToString
 @NoArgsConstructor
+@Document
 public class Comment {
 
+    @Id
+    private String commentId;
     private String category;
     private String commentBody;
     private boolean anonymous;
     private User user;
+    private Policy policy;
 
-    public Comment(String category, String commentBody, boolean anonymous, User user) {
+    public Comment(String commentId, String category, String commentBody, boolean anonymous, User user, Policy policy) {
         super();
+        this.commentId = commentId;
         this.category = category;
         this.commentBody = commentBody;
         this.anonymous = anonymous;
         this.user = user;
+        this.policy = policy;
+    }
+
+    public String getCommentId() {
+        return commentId;
     }
 
     public String getCategory() {
@@ -44,4 +54,7 @@ public class Comment {
         return user;
     }
 
+    public Policy getPolicy() {
+        return policy;
+    }
 }

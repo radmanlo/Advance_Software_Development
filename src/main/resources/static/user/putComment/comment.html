@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment</title>
+</head>
+<body>
+    <form>
+        <div id="policy-info-container"></div>
+    </form>
+    <form>
+        <div id="comments-container"></div>
+    </form>
+
+    <form id="put-comment">
+        <h1>Your Comment</h1>
+        <br>
+        <label for="email">Email Address:</label>
+        <input type="text" id="email" name="email" required>
+        <br>
+        <br>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" rows="5" required></textarea>
+        <br>
+        <br>
+        <div class="checkpoint">
+            <label for="anonymous"> Do you want you comment be anonymous? </label>
+            <input type="checkbox" id="anonymous" name="anonymous" value=1>
+        </div>
+        <br>
+        <br>
+        <button type="submit">Comment</button>
+    </form>
+    <script src="commentScript.js"></script>
+</body>
+</html>

@@ -21,7 +21,8 @@ public class CommentDto {
     private String category;
     private String commentBody;
     private boolean anonymous;
-    private User user;
+    private UserDto userDto;
+    private PolicyDto policyDto;
 //    private List<Comment> comments = new ArrayList<Comment>();
 
 }

@@ -1,6 +1,7 @@
 package com.example.feedback.entity.builder;
 
 import com.example.feedback.entity.Comment;
+import com.example.feedback.entity.Policy;
 import com.example.feedback.entity.User;
 
 import java.util.ArrayList;
@@ -8,10 +9,22 @@ import java.util.List;
 
 public class CommentBuilder {
 
+    private String commentId;
     private String category;
     private String commentBody;
     private boolean anonymous;
     private User user;
+    private Policy policy;
+
+    public CommentBuilder setCommentId(String commentId) {
+        this.commentId = commentId;
+        return this;
+    }
+
+    public CommentBuilder setPolicy(Policy policy) {
+        this.policy = policy;
+        return this;
+    }
 
     public CommentBuilder setCategory(String category) {
         this.category = category;
@@ -34,6 +47,6 @@ public class CommentBuilder {
     }
 
     public Comment build(){
-        return new Comment(category,commentBody,anonymous,user);
+        return new Comment(commentId, category,commentBody,anonymous,user, policy);
     }
 }

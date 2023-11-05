@@ -20,15 +20,14 @@ public class Policy {
     private String category;
     private String duration;
     private int likes;
-    private List<Comment> policyComments = new ArrayList<Comment>();
+//    private List<Comment> policyComments = new ArrayList<Comment>();
 
     public Policy(String policyId,
                   String name,
                   String description,
                   String category,
                   String duration,
-                  int likes,
-                  List<Comment> policyComments) {
+                  int likes) {
         super();
         this.policyId = policyId;
         this.name = name;
@@ -36,7 +35,7 @@ public class Policy {
         this.category = category;
         this.duration = duration;
         this.likes = likes;
-        this.policyComments = policyComments;
+//        this.policyComments = policyComments;
     }
 
     public String getPolicyId() {
@@ -63,8 +62,8 @@ public class Policy {
         return likes;
     }
 
-    public List<Comment> getPolicyComments() {
-        return policyComments;
-    }
+//    public List<Comment> getPolicyComments() {
+//        return policyComments;
+//    }
 
 }

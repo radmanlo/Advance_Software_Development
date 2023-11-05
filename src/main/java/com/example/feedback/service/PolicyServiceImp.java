@@ -39,7 +39,7 @@ public class PolicyServiceImp implements PolicyService{
                     .setCategory(policyDto.getCategory())
                     .setDuration(policyDto.getDuration())
                     .setLikes(policyDto.getLikes())
-                    .setPolicyComments(policyDto.getPolicyComments())
+//                    .setPolicyComments(policyDto.getPolicyComments())
                     .build();
             Policy createdPolicy = policyRepository.save(policy);
             System.out.println("-----------------------------------");
@@ -52,7 +52,7 @@ public class PolicyServiceImp implements PolicyService{
                     .category(createdPolicy.getCategory())
                     .duration(createdPolicy.getDuration())
                     .likes(createdPolicy.getLikes())
-                    .policyComments(createdPolicy.getPolicyComments())
+//                    .policyComments(createdPolicy.getPolicyComments())
                     .build();
             return createdPolicyDto;
         }catch (Exception e) {
@@ -83,7 +83,7 @@ public class PolicyServiceImp implements PolicyService{
                     updatedPolicyBuilder.setLikes(policyDto.getLikes());
                 else
                     updatedPolicyBuilder.setLikes(policy.get().getLikes());
-                updatedPolicyBuilder.setPolicyComments(policy.get().getPolicyComments());
+//                updatedPolicyBuilder.setPolicyComments(policy.get().getPolicyComments());
 
                 Policy respond = policyRepository.save(updatedPolicyBuilder.build());
                 System.out.println("-----------------------------------");
@@ -118,7 +118,7 @@ public class PolicyServiceImp implements PolicyService{
                         .category(foundPolicy.get().getCategory())
                         .duration(foundPolicy.get().getDuration())
                         .likes(foundPolicy.get().getLikes())
-                        .policyComments(foundPolicy.get().getPolicyComments())
+//                        .policyComments(foundPolicy.get().getPolicyComments())
                         .build();
                 return policyDto;
             }
@@ -142,7 +142,7 @@ public class PolicyServiceImp implements PolicyService{
                         .category(item.getCategory())
                         .duration(item.getDuration())
                         .likes(item.getLikes())
-                        .policyComments(item.getPolicyComments())
+//                        .policyComments(item.getPolicyComments())
                         .build();
                 lisPolicyDto.add(policyDto);
             }
@@ -166,7 +166,7 @@ public class PolicyServiceImp implements PolicyService{
                         .category(deletedPolicy.get().getCategory())
                         .duration(deletedPolicy.get().getDuration())
                         .likes(deletedPolicy.get().getLikes())
-                        .policyComments(deletedPolicy.get().getPolicyComments())
+//                        .policyComments(deletedPolicy.get().getPolicyComments())
                         .build();
                 return policyDto;
             }
@@ -182,7 +182,7 @@ public class PolicyServiceImp implements PolicyService{
     public PolicyDto addComment(String policyId, Comment comment) {
         Optional<Policy> foundPolicy = policyRepository.findById(policyId);
         if (foundPolicy.isPresent()){
-            foundPolicy.get().getPolicyComments().add(comment);
+//            foundPolicy.get().getPolicyComments().add(comment);
             Policy updatedPolicy = policyRepository.save(foundPolicy.get());
             return PolicyDto.builder()
                     .name(updatedPolicy.getName())
@@ -196,11 +196,29 @@ public class PolicyServiceImp implements PolicyService{
         return null;
     }
 
-//    public PolicyDto addComment(String policyId, Comment comment) {
+//    @Override
+//    public List<PolicyDto> findCommentByUserEmail(String userEmail) {
+//        Optional<List<Policy>> policies = policyRepository.findByPolicyCommentsUserEmail(userEmail);
+//        if (policies.isPresent()){
+//            List<PolicyDto> policyDtos = new ArrayList<PolicyDto>();
+//            for (Policy p : policies.get()){
+//                policyDtos.add(PolicyDto.builder()
+//                        .policyId(p.getPolicyId())
+//                        .name(p.getName())
+//                        .description(p.getDescription())
+//                        .duration(p.getDuration())
+//                        .build());
+//            }
+//            return po;
+//        }
+//        return null;
+//    }
+
+//    public PolicyDto addComment(String policyId, Comment putComment) {
 //        try{
 //            Optional<Policy> foundPolicy = policyRepository.findById(policyId);
 //            if (foundPolicy.isPresent()){
-//                String url = "http://localhost:5050/user/update/point?email=" + comment.getUser().getEmail();
+//                String url = "http://localhost:5050/user/update/point?email=" + putComment.getUser().getEmail();
 //                RestTemplate restTemplate = new RestTemplate();
 //                ResponseEntity<UserDto> user = restTemplate.exchange(
 //                        url,
@@ -209,7 +227,7 @@ public class PolicyServiceImp implements PolicyService{
 //                        UserDto.class
 //                );
 //                if (user.hasBody()){
-//                    Policy policy = foundPolicy.get();
+//                    Policy user = foundPolicy.get();
 //                    User commentUser = new UserBuilder()
 //                            .setEmail(user.getBody().getEmail())
 //                            .setFirstName(user.getBody().getFirstName())
@@ -217,14 +235,14 @@ public class PolicyServiceImp implements PolicyService{
 //                            .setPoints(user.getBody().getPoints())
 //                            .build();
 //                    Comment newComment = new CommentBuilder()
-//                            .setCommentBody(comment.getCommentBody())
-//                            .setComments(comment.getComments())
-//                            .setAnonymous(comment.isAnonymous())
+//                            .setCommentBody(putComment.getCommentBody())
+//                            .setComments(putComment.getComments())
+//                            .setAnonymous(putComment.isAnonymous())
 //                            .setUser(commentUser)
-//                            .setCategory(comment.getCategory())
+//                            .setCategory(putComment.getCategory())
 //                            .build();
-//                    policy.getPolicyComments().add(newComment);
-//                    Policy updatedPolicy = policyRepository.save(policy);
+//                    user.getPolicyComments().add(newComment);
+//                    Policy updatedPolicy = policyRepository.save(user);
 //                    System.out.println("-----------------------------------");
 //                    System.out.println("Comment is added to Policy");
 //                    System.out.println("-----------------------------------");

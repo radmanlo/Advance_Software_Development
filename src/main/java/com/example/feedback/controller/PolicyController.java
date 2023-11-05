@@ -86,21 +86,20 @@ public class PolicyController {
         }
     }
 
-    @PostMapping("/addComment")
-    public ResponseEntity<PolicyDto> addComment (@RequestParam String policyId,
-                                                 @RequestBody Comment comment){
-        try{
-            PolicyDto updatePolicy = service.addComment(policyId, comment);
-            if (updatePolicy != null){
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatePolicy);
-            }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        } catch (Exception e){
-            System.out.println("Exception addComment in PolicyController" + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-
-    }
+//    @PostMapping("/addComment")
+//    public ResponseEntity<PolicyDto> addComment (@RequestBody CommentDto commentDto){
+//        try{
+//            PolicyDto updatePolicy = service.addComment(commentDto);
+//            if (updatePolicy != null){
+//                return ResponseEntity.status(HttpStatus.ACCEPTED).body(updatePolicy);
+//            }
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//        } catch (Exception e){
+//            System.out.println("Exception addComment in PolicyController" + e.getMessage());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//        }
+//
+//    }
 
 //    @PostMapping("/addByChain")
 //    public ResponseEntity<PolicyDto> addCommentByChain(@RequestParam String policyId,

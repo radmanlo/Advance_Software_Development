@@ -14,7 +14,7 @@ public class PolicyBuilder {
     private String category;
     private String duration;
     private int likes;
-    private List<Comment> policyComments = new ArrayList<Comment>();
+//    private List<Comment> policyComments = new ArrayList<Comment>();
 
     public PolicyBuilder setPolicyId(String policyId) {
         this.policyId = policyId;
@@ -46,12 +46,12 @@ public class PolicyBuilder {
         return this;
     }
 
-    public PolicyBuilder setPolicyComments(List<Comment> policyComment) {
-        policyComments = policyComment;
-        return this;
-    }
+//    public PolicyBuilder setPolicyComments(List<Comment> policyComment) {
+//        policyComments = policyComment;
+//        return this;
+//    }
 
     public Policy build(){
-        return new Policy(policyId,name,description,category,duration,likes, policyComments);
+        return new Policy(policyId,name,description,category,duration,likes);
     }
 }
