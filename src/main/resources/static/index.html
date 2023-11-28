@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
     <title>Title</title>
 </head>
 <body>
+
+
+<form id="Menu">
+
+    <h1>Welcome to Insurance Hab</h1>
+    <input type="button" name="comment" id="comment" value="Your Comments">
+    <br>
+    <input type="button" name="policy" id="policy" value="Policy">
+
+</form>
+
+<script>
+
+    const comment = document.getElementById("comment");
+    const policy = document.getElementById("policy");
+    policy.addEventListener("click", function () {
+        window.location.href = "/user/policies/allPolicy.html";
+    });
+
+    comment.addEventListener("click", function () {
+        window.location.href = "/user/comments/comment.html";
+    });
+
+</script>
 
 </body>
 </html>

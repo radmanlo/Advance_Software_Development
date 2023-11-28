@@ -86,6 +86,18 @@ public class PolicyController {
         }
     }
 
+//    @GetMapping("like")
+//    public ResponseEntity<Boolean> likePolicy(@RequestParam String policyId){
+//        try {
+//            boolean response = service.likePolicy(policyId);
+//            if (response)
+//                return ResponseEntity.status(HttpStatus.OK).body(response);
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+//        } catch (Exception e){
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+//        }
+//    }
+
 //    @PostMapping("/addComment")
 //    public ResponseEntity<PolicyDto> addComment (@RequestBody CommentDto commentDto){
 //        try{

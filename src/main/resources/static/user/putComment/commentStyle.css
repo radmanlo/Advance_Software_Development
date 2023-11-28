@@ -1,0 +1,142 @@
+/*body {*/
+/*    background-color: #ccc;*/
+/*    font-family: Arial, sans-serif;*/
+/*    text-align: center;*/
+/*    padding: 20px;*/
+/*}*/
+
+body {
+    background-color: #ccc;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.column {
+    width: 45%; /* Adjust the width as needed */
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+#put-comment,
+#put-rating {
+    max-width: 100%;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.field-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    /*margin-top: 15px;*/
+}
+
+.field-value {
+    margin-bottom: 12px;
+}
+
+#info {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#comments {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.comment-card,
+.policy-card{
+    background-color: #fff;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/*#put-comment {*/
+/*    max-width: 500px;*/
+/*    background-color: #f8f8f8;*/
+/*    border: 1px solid #ddd;*/
+/*    padding: 15px;*/
+/*    border-radius: 5px;*/
+/*    margin: 20px auto;*/
+/*}*/
+
+#put-comment h1 {
+    color: #333;
+}
+
+#put-comment label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#put-comment input,
+#put-comment textarea,
+#put-comment select {
+    width: 70%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#put-comment button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    width: 70%;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#put-comment button:hover {
+    background-color: #45a049;
+}
+
+#put-comment .checkpoint {
+    margin-top: 15px;
+}
+
+#put-rating button{
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 10px;
+    width: 70%;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#put-rating button:hover{
+    background-color: blue;
+}
+
+/*#put-rating input{*/
+/*    width: 70%;*/
+/*    padding: 8px;*/
+/*    box-sizing: border-box;*/
+/*    margin-bottom: 10px;*/
+/*}*/

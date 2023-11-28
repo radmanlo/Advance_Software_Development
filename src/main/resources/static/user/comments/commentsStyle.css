@@ -1,0 +1,177 @@
+/*body {*/
+/*    background-color: #ccc;*/
+/*    font-family: Arial, sans-serif;*/
+/*    text-align: center;*/
+/*    padding: 20px;*/
+/*}*/
+
+body {
+    background-color: #ccc;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+#container {
+    display: flex;
+    justify-content: space-around;
+    /*text-align: center;*/
+}
+
+#comments-container,
+#rating-container {
+    width: 45%; /* Adjust the width as needed */
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.comment-card,
+.rate-card {
+    background-color: #fff;
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#submit{
+    background-color: green;
+    color: #fff;
+    padding: 10px 230px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+
+#submit:hover {
+    background-color: darkgreen;
+}
+
+.field-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    /*margin-top: 15px;*/
+}
+
+.field-value {
+    margin-bottom: 12px;
+}
+
+/*.comment-card {*/
+/*    background-color: #fff;*/
+/*    max-width: 500px;*/
+/*    margin: 20px auto;*/
+/*    padding: 20px;*/
+/*    border: 1px solid #ccc;*/
+/*    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
+.submit-button,
+.update-button {
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 10px 50px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover,
+.update-button:hover{
+    background-color: blue;
+}
+
+.delete-button {
+    background-color: red;
+    color: #fff;
+    padding: 10px 50px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover{
+    background-color: darkred;
+}
+
+input[type="text"]{
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+checkbox {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.info-card{
+    border: 2px solid #ddd;
+}
+
+.update-card {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.update-card label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.update-card input,
+.update-card textarea,
+.update-card select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.update-card button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.update-card button.cancel-button{
+    background-color: orange;
+    margin-left: 10px;
+}

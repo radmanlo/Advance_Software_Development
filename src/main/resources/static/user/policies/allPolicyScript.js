@@ -6,6 +6,7 @@ function fetchApiPolicy(){
         .then((data)=>{
             data.forEach((policy)=>{
                 createPolicyCard(policy)
+
             })
         }).catch((error)=>{
         console.log("Error fetching data => ", error)
@@ -13,6 +14,15 @@ function fetchApiPolicy(){
 }
 
 function createPolicyCard(policy){
+    let average = [0,0,0];
+    fetch(`http://localhost:5050/rating/policyAverage?policyId=${policy.policyId}`)
+        .then(response => {
+            if (response.status === 302){
+                response.json().then(data =>{
+                    average = data;
+                })
+            }
+        })
     let policyCard = document.createElement('div');
     policyCard.classList.add('policy-card');
     policyCard.innerHTML = `
@@ -26,9 +36,13 @@ function createPolicyCard(policy){
         <div class="field-value">${policy.duration}</div>
         <div class="field-label">Policy Category:</div>
         <div class="field-value">${policy.category}</div>
-        <div class="field-label">Policy Likes:</div>
-        <div class="field-value">${policy.likes}</div>
-        <button class="comment-button">Comments</button>
+        <div class="field-label">Satisfaction Rate:</div>
+        <div class="field-value">${average[0]}</div>
+        <div class="field-label">Clarity Rate:</div>
+        <div class="field-value">${average[1]}</div>
+        <div class="field-label">Coverage Rate:</div>
+        <div class="field-value">${average[2]}</div>
+        <button class="comment-button">Reviews</button>
     `;
     policyCard.querySelector(`.comment-button`).addEventListener('click', ()=> {
         event.preventDefault();

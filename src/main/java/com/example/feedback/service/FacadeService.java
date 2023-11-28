@@ -2,13 +2,13 @@ package com.example.feedback.service;
 
 import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
+import com.example.feedback.dto.RatingDto;
 import com.example.feedback.dto.UserDto;
-import com.example.feedback.entity.Comment;
-import com.example.feedback.entity.builder.CommentBuilder;
 import com.example.feedback.service.chainOfResponsibility.AddCommentHandler;
 import com.example.feedback.service.chainOfResponsibility.AddPointHandler;
 import com.example.feedback.service.chainOfResponsibility.FindPolicyHandler;
 import com.example.feedback.service.chainOfResponsibility.FindUserHandler;
+import com.example.feedback.service.chainOfResponsibility.ratingChain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +21,7 @@ public class FacadeService {
     private final PolicyService policyService;
     private final UserService userService;
     private final CommentService commentService;
+    private final RatingService ratingService;
 
 
     public PolicyDto createPolicy(PolicyDto policyDto){
@@ -42,16 +43,6 @@ public class FacadeService {
     public PolicyDto deletePolicy(String policyId){
         return policyService.deletePolicy(policyId);
     }
-
-//    public PolicyDto addComment(String policyId, Comment comment){
-//            AddCommentHandler findUserHandler = new FindUserHandler(userService);
-//            AddCommentHandler findPolicyHandler = new FindPolicyHandler(policyService);
-//            AddCommentHandler addPointHandler = new AddPointHandler(userService);
-//            findUserHandler.setNextHandler(findPolicyHandler);
-//            findPolicyHandler.setNextHandler(addPointHandler);
-//            Comment processedComment = findUserHandler.processComment(comment);
-//            return policyService.addComment(policyId, processedComment);
-//    }
 
     public UserDto createUser(UserDto userDto){
         return userService.createUser(userDto);
@@ -101,6 +92,47 @@ public class FacadeService {
     }
 
     public CommentDto deleteComment (String commentId){
-        return commentService.deleteComment(commentId);
+        CommentDto response = commentService.deleteComment(commentId);
+        if (response != null) {
+            userService.DeleteUserPoint(response.getUserDto().getEmail());
+            return response;
+        }
+        return null;
     }
+
+    public RatingDto createRating (RatingDto ratingDto) {
+        AddRatingHandler findUserHandler = new FindUserHandlerR(userService);
+        AddRatingHandler findPolicyHandler = new FindPolicyHandlerR(policyService);
+        AddRatingHandler findRatingHandler = new FindRatingHandler(ratingService);
+        AddRatingHandler addPointingHandler = new AddPointHandlerR(userService);
+        findUserHandler.setNextHandler(findPolicyHandler);
+        findPolicyHandler.setNextHandler(findRatingHandler);
+        findRatingHandler.setNextHandler(addPointingHandler);
+        RatingDto processedRating = findUserHandler.processRating(ratingDto);
+        if (processedRating != null)
+            return ratingService.createRating(processedRating);
+        return null;
+    }
+
+    public List<RatingDto> getRatingByUserEmail(String userEmail){
+        return ratingService.findByUserEmail(userEmail);
+    }
+
+    public int[] policyAverageRating(String policyId){
+        return ratingService.policyRatingAverage(policyId);
+    }
+
+    public RatingDto updateRating(RatingDto ratingDto){
+        return ratingService.updateRating(ratingDto);
+    }
+
+    public RatingDto deleteRating(String ratingId){
+        RatingDto response = ratingService.deleteRating(ratingId);
+        if (response != null){
+            userService.DeleteUserPoint(response.getUserDto().getEmail());
+            return response;
+        }
+        return null;
+    }
+
 }

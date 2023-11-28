@@ -49,4 +49,12 @@ public interface UserService {
      */
     UserDto updateUserPoint (String email);
 
+    /**
+     * User lose point when delete comment or rating
+     * @param email
+     * @return UserDto if it was successful
+     * otherwise
+     * @return null
+     */
+    UserDto DeleteUserPoint (String email);
 }

@@ -1,24 +1,13 @@
 package com.example.feedback.service;
 
 
-import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
-import com.example.feedback.dto.UserDto;
 import com.example.feedback.entity.Comment;
 import com.example.feedback.entity.Policy;
-import com.example.feedback.entity.User;
-import com.example.feedback.entity.builder.CommentBuilder;
 import com.example.feedback.entity.builder.PolicyBuilder;
-import com.example.feedback.entity.builder.UserBuilder;
 import com.example.feedback.repository.PolicyRepository;
-import com.example.feedback.service.chainOfResponsibility.AddCommentHandler;
-import com.example.feedback.service.chainOfResponsibility.FindUserHandler;
-import com.example.feedback.service.chainOfResponsibility.AddPointHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,27 +53,19 @@ public class PolicyServiceImp implements PolicyService{
     @Override
     public PolicyDto updatePolicy(PolicyDto policyDto) {
         try {
-            System.out.println(policyDto);
+//            System.out.println(policyDto);
             Optional<Policy> policy = policyRepository.findById(policyDto.getPolicyId());
             if (policy.isPresent()){
                 PolicyBuilder updatedPolicyBuilder = new PolicyBuilder();
                 updatedPolicyBuilder.setPolicyId(policyDto.getPolicyId());
-                if (!policyDto.getName().isEmpty()){
-                    updatedPolicyBuilder.setName(policyDto.getName());
-                }
-                else
-                    updatedPolicyBuilder.setName(policy.get().getName());
-                if (!policyDto.getDescription().isEmpty()){
-                    updatedPolicyBuilder.setCategory(policy.get().getCategory());
-                }
-                else
-                    updatedPolicyBuilder.setDuration(policy.get().getDuration());
-                if (policyDto.getLikes() != 0)
-                    updatedPolicyBuilder.setLikes(policyDto.getLikes());
-                else
-                    updatedPolicyBuilder.setLikes(policy.get().getLikes());
-//                updatedPolicyBuilder.setPolicyComments(policy.get().getPolicyComments());
-
+                updatedPolicyBuilder.setName(policyDto.getName().isEmpty() ? policy.get().getName() : policyDto.getName());
+                updatedPolicyBuilder.setDuration(policyDto.getDuration().isEmpty() ? policy.get().getDuration() :
+                        policyDto.getDuration());
+                updatedPolicyBuilder.setCategory(policyDto.getCategory().isEmpty() ? policy.get().getCategory() :
+                        policyDto.getCategory());
+                updatedPolicyBuilder.setDescription(policyDto.getDescription().isEmpty() ? policy.get().getDescription() :
+                        policyDto.getDescription());
+                System.out.println(updatedPolicyBuilder.build().toString());
                 Policy respond = policyRepository.save(updatedPolicyBuilder.build());
                 System.out.println("-----------------------------------");
                 System.out.println("Policy is Updated");
@@ -196,6 +177,7 @@ public class PolicyServiceImp implements PolicyService{
         return null;
     }
 
+
 //    @Override
 //    public List<PolicyDto> findCommentByUserEmail(String userEmail) {
 //        Optional<List<Policy>> policies = policyRepository.findByPolicyCommentsUserEmail(userEmail);
@@ -272,12 +254,12 @@ public class PolicyServiceImp implements PolicyService{
 //    public PolicyDto addCommentByChain(String policyId, CommentDto commentDto){
 //        Optional<Policy> foundPolicy = policyRepository.findById(policyId);
 //        if (foundPolicy.isPresent()){
-//            AddCommentHandler findUserHandler = new FindUserHandler(userService);
-//            AddCommentHandler addPointHandler = new AddPointHandler(userService);
+//            AddCommentHandler FindUserHandlerR = new FindUserHandlerR(userService);
+//            AddCommentHandler addPointHandler = new AddPointHandlerR(userService);
 //            AddCommentHandler saveCommentHandler = new SaveCommentHandler(commentService);
-//            findUserHandler.setNextHandler(addPointHandler);
+//            FindUserHandlerR.setNextHandler(addPointHandler);
 //            addPointHandler.setNextHandler(saveCommentHandler);
-//            CommentDto processedComment = findUserHandler.processComment(commentDto);
+//            CommentDto processedComment = FindUserHandlerR.processComment(commentDto);
 //            Comment newComment = new CommentBuilder()
 //                    .setComments(processedComment.getComments())
 //                    .setCommentBody(processedComment.getCommentBody())

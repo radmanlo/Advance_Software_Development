@@ -2,35 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="commentStyle.css">
     <title>Comment</title>
 </head>
 <body>
-    <form>
+
+
+    <form id="info">
+        <h1>Policy</h1>
         <div id="policy-info-container"></div>
     </form>
-    <form>
+    <form id ="comments">
+        <h1>Comments</h1>
         <div id="comments-container"></div>
     </form>
 
-    <form id="put-comment">
-        <h1>Your Comment</h1>
-        <br>
-        <label for="email">Email Address:</label>
-        <input type="text" id="email" name="email" required>
-        <br>
-        <br>
-        <label for="comment">Comment:</label>
-        <textarea id="comment" name="comment" rows="5" required></textarea>
-        <br>
-        <br>
-        <div class="checkpoint">
-            <label for="anonymous"> Do you want you comment be anonymous? </label>
-            <input type="checkbox" id="anonymous" name="anonymous" value=1>
+    <div class="container">
+        <div class="column">
+            <form id="put-comment">
+                <h1>Your Comment</h1>
+                <br>
+                <label for="email">Email Address:</label>
+                <input type="text" id="email" name="email" required>
+                <br>
+                <br>
+                <label for="category">Category:</label>
+                <input id="category" name="category" rows="5" required>
+                <br>
+                <br>
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" rows="5" required></textarea>
+                <br>
+                <br>
+                <div class="checkpoint">
+                    <label for="anonymous"> anonymous? </label>
+                    <input type="checkbox" id="anonymous" name="anonymous" value=1>
+                </div>
+                <br>
+                <br>
+                <button type="submit">Comment</button>
+            </form>
         </div>
-        <br>
-        <br>
-        <button type="submit">Comment</button>
-    </form>
+        <div class="column">
+            <form id="put-rating">
+                <h1>Your Rating</h1>
+                <br>
+                <label for="emailR">Email Address:</label>
+                <input type="text" id="emailR" name="emailR" required>
+                <br>
+                <br>
+                <label for="satisfaction">Satisfaction with the insurance policy and services</label>
+                <input type="number" id="satisfaction" name="satisfaction" min="1" max="5" step="1" required>
+                <br>
+                <br>
+                <label for="clarity">Clarity and transparency of the insurance policy terms and conditions.</label>
+                <input type="number" id="clarity" name="clarity" min="1" max="5" step="1" required>
+                <br>
+                <br>
+                <label for="coverage">Coverage met your needs and expectations.</label>
+                <input type="number" id="coverage" name="coverage" min="1" max="5" step="1" required>
+                <br>
+                <br>
+                <button type="submit">Rate</button>
+            </form>
+        </div>
+    </div>
+
+
     <script src="commentScript.js"></script>
 </body>
 </html>

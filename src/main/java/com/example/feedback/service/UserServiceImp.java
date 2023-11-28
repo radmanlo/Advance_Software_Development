@@ -144,4 +144,34 @@ public class UserServiceImp implements UserService {
             return null;
         }
     }
+
+    @Override
+    public UserDto DeleteUserPoint(String email) {
+        try{
+            Optional<User> foundUser = userRepository.findById(email);
+            if (foundUser.isPresent()){
+                UserBuilder updatedBuilderUser = new UserBuilder()
+                        .setEmail(foundUser.get().getEmail())
+                        .setFirstName(foundUser.get().getFirstName())
+                        .setLastName(foundUser.get().getLastName())
+                        .setPoints(foundUser.get().getPoints() - 1);
+                User updatedUser = userRepository.save(updatedBuilderUser.build());
+                UserDto updatedUserDto = UserDto.builder()
+                        .email(updatedUser.getEmail())
+                        .firstName(updatedUser.getFirstName())
+                        .lastName(updatedUser.getLastName())
+                        .points(updatedUser.getPoints())
+                        .build();
+                System.out.println("-----------------------------------");
+                System.out.println("User point is updated");
+                System.out.println("-----------------------------------");
+                return updatedUserDto;
+            }
+            System.out.println("updateUser in UserServiceImp ==> " + "user with this email not found");
+            return null;
+        } catch (Exception e){
+            System.out.println("Exception UpdateUser in UserServiceImp ==> " + e.getMessage());
+            return null;
+        }
+    }
 }

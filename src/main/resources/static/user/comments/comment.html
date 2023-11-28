@@ -2,20 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="commentsStyle.css">
+    <title>User Reviews</title>
 </head>
 <body>
   <form id="put-comment">
-    <h1>Your Comment</h1>
+    <h1>Your Comments</h1>
     <br>
     <label for="email">Email Address:</label>
     <input type="text" id="email" name="email" required>
-    <button type="submit" name="submit" id="submit">Comment</button>
+      <br>
+    <button type="submit" name="submit" id="submit">Find</button>
+      <div id="info-container"></div>
   </form>
 
-  <form>
+  <div id="container">
+      <h1>Comments</h1>
       <div id="comments-container"></div>
-  </form>
+
+      <h1>Ratings</h1>
+      <div id="rating-container"></div>
+  </div>
+
+<!--  <div id="comments-container"></div>-->
+<!--  <div id="rating-container"></div>-->
 
 <script src="commentsScript.js"></script>
 
