@@ -9,7 +9,6 @@ import java.util.List;
 
 
 @NoArgsConstructor
-//@Getter
 @ToString
 @Document(collection = "policy")
 public class Policy {
@@ -21,9 +20,6 @@ public class Policy {
     private String category;
     private String duration;
     private int likes;
-
-    private Rating rating;
-//    private List<Comment> policyComments = new ArrayList<Comment>();
 
     public Policy(String policyId,
                   String name,
@@ -38,7 +34,6 @@ public class Policy {
         this.category = category;
         this.duration = duration;
         this.likes = likes;
-//        this.policyComments = policyComments;
     }
 
     public String getPolicyId() {

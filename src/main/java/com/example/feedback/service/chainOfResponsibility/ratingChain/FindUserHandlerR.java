@@ -7,19 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FindUserHandlerR implements AddRatingHandler{
-
     private AddRatingHandler nextHandler;
     private final UserService userService;
-
     public FindUserHandlerR(UserService userService) {
         this.userService = userService;
     }
-
     @Override
     public void setNextHandler(AddRatingHandler nextHandler) {
         this.nextHandler = nextHandler;
     }
-
     @Override
     public RatingDto processRating(RatingDto ratingDto) {
         UserDto foundUser = userService.getUserByEmail(ratingDto.getUserDto().getEmail());

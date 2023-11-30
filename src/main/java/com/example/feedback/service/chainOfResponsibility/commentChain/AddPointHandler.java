@@ -1,8 +1,7 @@
-package com.example.feedback.service.chainOfResponsibility;
+package com.example.feedback.service.chainOfResponsibility.commentChain;
 
 import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.UserDto;
-import com.example.feedback.entity.Comment;
 import com.example.feedback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

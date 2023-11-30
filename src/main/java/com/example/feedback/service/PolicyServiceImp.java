@@ -28,7 +28,6 @@ public class PolicyServiceImp implements PolicyService{
                     .setCategory(policyDto.getCategory())
                     .setDuration(policyDto.getDuration())
                     .setLikes(policyDto.getLikes())
-//                    .setPolicyComments(policyDto.getPolicyComments())
                     .build();
             Policy createdPolicy = policyRepository.save(policy);
             System.out.println("-----------------------------------");
@@ -41,7 +40,6 @@ public class PolicyServiceImp implements PolicyService{
                     .category(createdPolicy.getCategory())
                     .duration(createdPolicy.getDuration())
                     .likes(createdPolicy.getLikes())
-//                    .policyComments(createdPolicy.getPolicyComments())
                     .build();
             return createdPolicyDto;
         }catch (Exception e) {

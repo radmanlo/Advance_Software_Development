@@ -1,7 +1,6 @@
-package com.example.feedback.service.chainOfResponsibility;
+package com.example.feedback.service.chainOfResponsibility.commentChain;
 
 import com.example.feedback.dto.CommentDto;
-import com.example.feedback.entity.Comment;
 
 
 public interface AddCommentHandler {

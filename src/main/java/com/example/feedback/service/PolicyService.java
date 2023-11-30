@@ -65,7 +65,7 @@ public interface PolicyService {
      * otherwise
      * @return null
      */
-    PolicyDto addComment (String policyId, Comment comment);
+//    PolicyDto addComment (String policyId, Comment comment);
 
 
 

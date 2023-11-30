@@ -36,12 +36,6 @@ function createPolicyCard(policy){
         <div class="field-value">${policy.duration}</div>
         <div class="field-label">Policy Category:</div>
         <div class="field-value">${policy.category}</div>
-        <div class="field-label">Satisfaction Rate:</div>
-        <div class="field-value">${average[0]}</div>
-        <div class="field-label">Clarity Rate:</div>
-        <div class="field-value">${average[1]}</div>
-        <div class="field-label">Coverage Rate:</div>
-        <div class="field-value">${average[2]}</div>
         <button class="comment-button">Reviews</button>
     `;
     policyCard.querySelector(`.comment-button`).addEventListener('click', ()=> {

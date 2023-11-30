@@ -7,20 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FindPolicyHandlerR implements AddRatingHandler{
-
     private AddRatingHandler nextHandler;
-
     private final PolicyService policyService;
-
     public FindPolicyHandlerR(PolicyService policyService) {
         this.policyService = policyService;
     }
-
     @Override
     public void setNextHandler(AddRatingHandler nextHandler) {
         this.nextHandler = nextHandler;
     }
-
     @Override
     public RatingDto processRating(RatingDto ratingDto) {
         PolicyDto policyDto = policyService.getPolicyById(ratingDto.getPolicyDto().getPolicyId());

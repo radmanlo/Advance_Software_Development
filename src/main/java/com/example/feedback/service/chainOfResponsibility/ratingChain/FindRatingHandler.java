@@ -6,15 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FindRatingHandler implements AddRatingHandler{
-
     private AddRatingHandler nextHandler;
-
     private final RatingService ratingService;
 
     public FindRatingHandler(RatingService ratingService) {
         this.ratingService = ratingService;
     }
-
     @Override
     public void setNextHandler(AddRatingHandler nextHandler) {
         this.nextHandler = nextHandler;

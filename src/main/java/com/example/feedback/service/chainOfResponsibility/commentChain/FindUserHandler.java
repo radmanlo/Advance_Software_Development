@@ -1,18 +1,10 @@
-package com.example.feedback.service.chainOfResponsibility;
+package com.example.feedback.service.chainOfResponsibility.commentChain;
 
 import com.example.feedback.dto.CommentDto;
-import com.example.feedback.dto.PolicyDto;
 import com.example.feedback.dto.UserDto;
-import com.example.feedback.entity.Comment;
-import com.example.feedback.entity.Policy;
-import com.example.feedback.entity.User;
-import com.example.feedback.entity.builder.CommentBuilder;
-import com.example.feedback.entity.builder.UserBuilder;
 import com.example.feedback.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 //@RequiredArgsConstructor
 @Component

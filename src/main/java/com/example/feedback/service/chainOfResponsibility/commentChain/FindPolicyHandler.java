@@ -1,13 +1,8 @@
-package com.example.feedback.service.chainOfResponsibility;
+package com.example.feedback.service.chainOfResponsibility.commentChain;
 
 import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
-import com.example.feedback.entity.Comment;
-import com.example.feedback.entity.Policy;
-import com.example.feedback.entity.builder.CommentBuilder;
-import com.example.feedback.entity.builder.PolicyBuilder;
 import com.example.feedback.service.PolicyService;
-import com.example.feedback.service.UserService;
 import org.springframework.stereotype.Component;
 
 @Component

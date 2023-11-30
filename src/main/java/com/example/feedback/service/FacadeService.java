@@ -4,10 +4,10 @@ import com.example.feedback.dto.CommentDto;
 import com.example.feedback.dto.PolicyDto;
 import com.example.feedback.dto.RatingDto;
 import com.example.feedback.dto.UserDto;
-import com.example.feedback.service.chainOfResponsibility.AddCommentHandler;
-import com.example.feedback.service.chainOfResponsibility.AddPointHandler;
-import com.example.feedback.service.chainOfResponsibility.FindPolicyHandler;
-import com.example.feedback.service.chainOfResponsibility.FindUserHandler;
+import com.example.feedback.service.chainOfResponsibility.commentChain.AddCommentHandler;
+import com.example.feedback.service.chainOfResponsibility.commentChain.AddPointHandler;
+import com.example.feedback.service.chainOfResponsibility.commentChain.FindPolicyHandler;
+import com.example.feedback.service.chainOfResponsibility.commentChain.FindUserHandler;
 import com.example.feedback.service.chainOfResponsibility.ratingChain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -71,7 +71,6 @@ public class FacadeService {
         findUserHandler.setNextHandler(findPolicyHandler);
         findPolicyHandler.setNextHandler(addPointHandler);
         CommentDto processedComment = findUserHandler.processComment(commentDto);
-//        System.out.println("CommentDto in Facade => " + processedComment.toString());
         return commentService.createComment(processedComment);
     }
 
